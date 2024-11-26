@@ -1,0 +1,43 @@
+(defcfg
+  tray-icon 				base.ico
+  process-unmapped-keys			no
+  concurrent-tap-hold			yes  
+  icon-match-layer-name			yes
+  notify-cfg-reload			yes
+  notify-cfg-reload-silent		no
+  notify-error				yes
+)
+	
+(defsrc
+  esc      1        2        3        4        5        6        7        8        9        0        -        =        bspc
+  tab      q        w        e        r        t        y        u        i        o        p        [        ]        \
+  caps     a        s        d        f        g        h        j        k        l        ;        '                 ret
+  lsft     z        x        c        v        b        n        m        ,        .        /                          rsft
+  lctl     f13      lalt                                spc                                 menu     ralt     rmet     rctl
+)
+
+(deflayer (base 🖼 "../kanata-customization/icons/base.ico")
+  grv      1        2        3        4        5        6        7        8        9        0        -        =        bspc
+  tab      q        w        e        r        t        y        u        i        o        p        [        ]        \
+  @caps0   a        s        d        f        g        h        j        k        l        ;        '                 ret
+  lsft     z        x        c        v        b        n        m        ,        .        /                          rsft
+  lctl     lmet     lalt                                @spc0                                 menu     ralt     rmet     rctl
+)
+
+(deflayer (navigation 🖼 "../kanata-customization/icons/navigation.ico")
+  esc      f1       f2       f3       f4       f5       f6       f7       f8       f9       f10      f11      f12      del
+  tab      XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX  
+  _        XX       XX       XX       XX       XX       lft      down     up       rght     XX       XX                XX 
+  lsft     XX       XX       XX       XX       XX       XX       XX       XX       XX       XX                         rsft
+  lctl     lmet     lalt                                pp                                  menu     ralt     rmet     rctl
+)
+
+
+(defalias nav-while-held (layer-while-held navigation)) 
+(defalias caps0 (tap-hold 200 200 esc @nav-while-held))
+(defalias spc0 (tap-hold 200 200 spc @nav-while-held)) 
+
+(defchordsv2
+  (lctrl rctrl spc) lrld 1000 first-release () ;; reload configuration
+)
+
